@@ -117,7 +117,8 @@ export default function Navbar() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <a href="#home" className="text-xl font-heading font-semibold tracking-tight text-slate-900 dark:text-text">
+          <a href="#home" className="text-xl font-heading font-semibold tracking-tight text-slate-900 dark:text-text flex items-center gap-2">
+            <img src={"https://i.postimg.cc/sDjfHCCh/gd-logo.png"} alt="Logo" className="w-8 h-8" />
             <span className="accent-gradient bg-clip-text text-transparent">Portfolio</span>
           </a>
           <div className="hidden md:flex items-center gap-8 relative">
