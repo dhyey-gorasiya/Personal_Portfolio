@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS variables for theme tokens */
+:root {
+  /* Light theme tokens */
+  --color-background: #ffffff;
+  --color-surface: #f8fafc;
+  --color-accent: #7C5CFF;
+  --color-secondary: #00E5C4;
+  --color-text: #0b1220;
+  --color-muted: #475569;
+}
+.dark :root {
+  /* Not supported; use class utilities for dark. */
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply bg-white text-slate-900 dark:bg-background dark:text-text antialiased;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: theme('fontFamily.body');
+}
+
+.font-heading { font-family: theme('fontFamily.heading'); }
+.font-code { font-family: theme('fontFamily.code'); }
+
+/* Focus styles with strong visibility and reduced motion respect */
+:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Utility classes for neon glow and gradient accents */
+.neon-glow {
+  box-shadow: 0 0 20px rgba(124,92,255,0.35), 0 0 10px rgba(0,229,196,0.25);
+}
+
+.accent-gradient {
+  background-image: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
+}
+
+/* Hide scrollbar but keep functionality - Global */
+html, body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Hide scrollbar for all elements */
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Utility class for specific elements */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
