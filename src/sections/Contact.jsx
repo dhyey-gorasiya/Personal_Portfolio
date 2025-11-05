@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeUp, staggerContainer } from '../utils/motion';
+import emailjs from 'emailjs-com';
 
 // Solar System Component with orbiting planets
 function SolarSystem() {
@@ -313,9 +314,26 @@ export default function Contact() {
   const [focusedField, setFocusedField] = useState(null);
 
   const onSubmit = async (data) => {
-    await new Promise((r) => setTimeout(r, 800));
-    reset();
-    setToast('Thanks! I will get back to you soon.');
+    setToast(null);
+    try {
+      // Replace these with your values from EmailJS
+      const SERVICE_ID = "service_ma8h1nl";
+      const TEMPLATE_ID = "template_b3di1qm";
+      const PUBLIC_KEY = "pzLyQrGRLccUQK4Ti";
+
+      const templateParams = {
+        name: data.name,
+        email: data.email,
+        message: data.message,
+      };
+
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+
+      reset();
+      setToast('Thanks! I will get back to you soon.');
+    } catch (error) {
+      setToast('Oops! There was an error. Please try again.');
+    }
     setTimeout(() => setToast(null), 2500);
   };
 
@@ -397,10 +415,10 @@ export default function Contact() {
                   onFocus={() => setFocusedField('name')}
                   onBlur={() => setFocusedField(null)}
                   className={`mt-2 w-full rounded-lg bg-white/80 dark:bg-surface/80 backdrop-blur-sm border-2 transition-all duration-300 ${errors.name
-                      ? 'border-red-400 focus:border-red-500'
-                      : focusedField === 'name'
-                        ? 'border-accent shadow-glow'
-                        : 'border-slate-200 dark:border-white/10 focus:border-accent'
+                    ? 'border-red-400 focus:border-red-500'
+                    : focusedField === 'name'
+                      ? 'border-accent shadow-glow'
+                      : 'border-slate-200 dark:border-white/10 focus:border-accent'
                     } px-4 py-3 outline-none focus:ring-2 focus:ring-accent/20 text-slate-900 dark:text-text placeholder:text-slate-400 dark:placeholder:text-muted`}
                   placeholder="Your name"
                   aria-invalid={!!errors.name}
@@ -432,10 +450,10 @@ export default function Contact() {
                   onFocus={() => setFocusedField('email')}
                   onBlur={() => setFocusedField(null)}
                   className={`mt-2 w-full rounded-lg bg-white/80 dark:bg-surface/80 backdrop-blur-sm border-2 transition-all duration-300 ${errors.email
-                      ? 'border-red-400 focus:border-red-500'
-                      : focusedField === 'email'
-                        ? 'border-accent shadow-glow'
-                        : 'border-slate-200 dark:border-white/10 focus:border-accent'
+                    ? 'border-red-400 focus:border-red-500'
+                    : focusedField === 'email'
+                      ? 'border-accent shadow-glow'
+                      : 'border-slate-200 dark:border-white/10 focus:border-accent'
                     } px-4 py-3 outline-none focus:ring-2 focus:ring-accent/20 text-slate-900 dark:text-text placeholder:text-slate-400 dark:placeholder:text-muted`}
                   placeholder="you@example.com"
                   aria-invalid={!!errors.email}
@@ -470,10 +488,10 @@ export default function Contact() {
                   onFocus={() => setFocusedField('message')}
                   onBlur={() => setFocusedField(null)}
                   className={`mt-2 w-full rounded-lg bg-white/80 dark:bg-surface/80 backdrop-blur-sm border-2 transition-all duration-300 resize-none ${errors.message
-                      ? 'border-red-400 focus:border-red-500'
-                      : focusedField === 'message'
-                        ? 'border-accent shadow-glow'
-                        : 'border-slate-200 dark:border-white/10 focus:border-accent'
+                    ? 'border-red-400 focus:border-red-500'
+                    : focusedField === 'message'
+                      ? 'border-accent shadow-glow'
+                      : 'border-slate-200 dark:border-white/10 focus:border-accent'
                     } px-4 py-3 outline-none focus:ring-2 focus:ring-accent/20 text-slate-900 dark:text-text placeholder:text-slate-400 dark:placeholder:text-muted`}
                   placeholder="Tell me about your project"
                   aria-invalid={!!errors.message}
