@@ -34,4 +34,21 @@ export const fadeInScale = {
   visible: { opacity: 1, scale: 1, transition },
 };
 
+// Smooth scroll utility function with navbar offset
+export const smoothScrollTo = (elementId, offset = 64) => {
+  const element = document.getElementById(elementId);
+  if (element) {
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+
+    // Update URL hash without triggering scroll
+    window.history.pushState(null, '', `#${elementId}`);
+  }
+};
+
 

@@ -1,7 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiMenu, FiX, FiMoon, FiSun } from 'react-icons/fi';
-import { useTheme } from '../hooks/useTheme';
+import { FiMenu, FiX } from 'react-icons/fi';
 import { fadeIn, transition } from '../utils/motion';
 
 const NAV_ITEMS = [
@@ -13,7 +12,6 @@ const NAV_ITEMS = [
 ];
 
 export default function Navbar() {
-  const { theme, toggleTheme } = useTheme('dark');
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('home');
   const linkRefs = useRef({});
@@ -32,6 +30,7 @@ export default function Navbar() {
     const sections = NAV_ITEMS.map((n) => document.getElementById(n.id)).filter(Boolean);
     if (!sections.length) return;
 
+    let ticking = false;
     const updateActiveSection = () => {
       const scrollPosition = window.scrollY + 100; // Offset for navbar height
 
@@ -49,6 +48,14 @@ export default function Navbar() {
       }
 
       setActive(currentSection);
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateActiveSection);
+        ticking = true;
+      }
     };
 
     // Use IntersectionObserver for better performance
@@ -73,13 +80,13 @@ export default function Navbar() {
 
     sections.forEach((s) => io.observe(s));
 
-    // Also use scroll listener for more responsive updates
-    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    // Use requestAnimationFrame for scroll listener for better performance
+    window.addEventListener('scroll', onScroll, { passive: true });
     updateActiveSection(); // Initial check
 
     return () => {
       io.disconnect();
-      window.removeEventListener('scroll', updateActiveSection);
+      window.removeEventListener('scroll', onScroll);
     };
   }, []);
 
@@ -106,6 +113,25 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', onResize);
   }, [active]);
 
+  // Smooth scroll handler with offset for navbar
+  const handleSmoothScroll = (e, itemId) => {
+    e.preventDefault();
+    setActive(itemId);
+    const element = document.getElementById(itemId);
+    if (element) {
+      const navbarHeight = 64; // h-16 = 64px
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+    // Update URL hash without triggering scroll
+    window.history.pushState(null, '', `#${itemId}`);
+  };
+
   return (
     <motion.nav
       role="navigation"
@@ -117,7 +143,11 @@ export default function Navbar() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <a href="#home" className="text-xl font-heading font-semibold tracking-tight text-slate-900 dark:text-text flex items-center gap-2">
+          <a
+            href="#home"
+            onClick={(e) => handleSmoothScroll(e, 'home')}
+            className="text-xl font-heading font-semibold tracking-tight text-slate-900 dark:text-text flex items-center gap-2"
+          >
             <img src={"https://i.postimg.cc/sDjfHCCh/gd-logo.png"} alt="Logo" className="w-8 h-8" />
             <span className="accent-gradient bg-clip-text text-transparent">Portfolio</span>
           </a>
@@ -127,7 +157,7 @@ export default function Navbar() {
                 <a
                   key={item.id}
                   href={`#${item.id}`}
-                  onClick={() => setActive(item.id)}
+                  onClick={(e) => handleSmoothScroll(e, item.id)}
                   ref={(el) => (linkRefs.current[item.id] = el)}
                   className={`py-1 transition-[color] duration-300 ease-smooth hover:text-slate-900 dark:hover:text-text ${active === item.id
                     ? 'text-slate-900 dark:text-text'
@@ -173,7 +203,10 @@ export default function Navbar() {
             <a
               key={item.id}
               href={`#${item.id}`}
-              onClick={() => setOpen(false)}
+              onClick={(e) => {
+                handleSmoothScroll(e, item.id);
+                setOpen(false);
+              }}
               className={`block px-2 py-2 rounded-md transition-colors hover:bg-black/5 dark:hover:bg-white/5 ${active === item.id
                 ? 'text-slate-900 dark:text-text bg-black/5 dark:bg-white/5'
                 : 'text-slate-600 dark:text-muted'

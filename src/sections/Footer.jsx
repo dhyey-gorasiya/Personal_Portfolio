@@ -57,6 +57,20 @@ export default function Footer() {
               >
                 <motion.a
                   href="#projects"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.getElementById('projects');
+                    if (element) {
+                      const navbarHeight = 64;
+                      const elementPosition = element.getBoundingClientRect().top;
+                      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                      window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                      });
+                      window.history.pushState(null, '', '#projects');
+                    }
+                  }}
                   className="relative text-slate-700 dark:text-slate-300 hover:text-accent dark:hover:text-accent transition-colors duration-200"
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}
@@ -77,6 +91,20 @@ export default function Footer() {
               >
                 <motion.a
                   href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.getElementById('contact');
+                    if (element) {
+                      const navbarHeight = 64;
+                      const elementPosition = element.getBoundingClientRect().top;
+                      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                      window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                      });
+                      window.history.pushState(null, '', '#contact');
+                    }
+                  }}
                   className="relative text-slate-700 dark:text-slate-300 hover:text-accent dark:hover:text-accent transition-colors duration-200"
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}

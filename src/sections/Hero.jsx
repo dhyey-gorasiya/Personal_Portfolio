@@ -84,19 +84,16 @@ export default function Hero() {
     }
   };
 
-  // Consistent particle positions (using seed values)
+  // Consistent particle positions (using seed values) - Reduced for performance
   const particles = useMemo(() => [
     { left: 10, top: 20, width: 150, height: 150, x: 30, y: -20, duration: 12, delay: 0 },
     { left: 80, top: 10, width: 120, height: 120, x: -40, y: 25, duration: 15, delay: 2 },
-    { left: 20, top: 60, width: 180, height: 180, x: 25, y: 30, duration: 18, delay: 1 },
-    { left: 70, top: 70, width: 140, height: 140, x: -30, y: -25, duration: 14, delay: 3 },
     { left: 40, top: 30, width: 160, height: 160, x: 20, y: 15, duration: 16, delay: 1.5 },
-    { left: 90, top: 50, width: 130, height: 130, x: -35, y: 20, duration: 13, delay: 2.5 },
   ], []);
 
-  // Glowing stars/particles for background
+  // Glowing stars/particles for background - Reduced for performance
   const stars = useMemo(() => {
-    return Array.from({ length: 30 }, (_, i) => {
+    return Array.from({ length: 15 }, (_, i) => {
       const seed = i * 17 + 7;
       return {
         left: (seed * 23) % 100,
@@ -123,6 +120,8 @@ export default function Hero() {
               height: particle.height,
               left: `${particle.left}%`,
               top: `${particle.top}%`,
+              willChange: 'transform',
+              transform: 'translateZ(0)',
             }}
             animate={{
               x: [0, particle.x, 0],
@@ -148,6 +147,8 @@ export default function Hero() {
             left: '60%',
             top: '40%',
             background: 'radial-gradient(circle, rgba(124, 92, 255, 0.4), transparent 70%)',
+            willChange: 'transform, opacity',
+            transform: 'translateZ(0)',
           }}
           animate={{
             scale: [1, 1.2, 1],
@@ -166,6 +167,8 @@ export default function Hero() {
           className="absolute inset-0 opacity-10 dark:opacity-5"
           style={{
             background: 'radial-gradient(ellipse at 80% 50%, rgba(124, 92, 255, 0.3), transparent 50%)',
+            willChange: 'opacity',
+            transform: 'translateZ(0)',
           }}
           animate={{
             opacity: [0.05, 0.15, 0.05],
@@ -190,6 +193,8 @@ export default function Hero() {
               top: `${star.top}%`,
               opacity: star.opacity,
               boxShadow: `0 0 ${star.size * 2}px rgba(255, 255, 255, 0.5)`,
+              willChange: 'transform, opacity',
+              transform: 'translateZ(0)',
             }}
             animate={{
               opacity: [star.opacity * 0.5, star.opacity, star.opacity * 0.5],
@@ -214,6 +219,8 @@ export default function Hero() {
             left: '20%',
             top: '10%',
             background: 'radial-gradient(circle, rgba(59, 130, 246, 0.3), transparent 70%)',
+            willChange: 'transform',
+            transform: 'translateZ(0)',
           }}
           animate={{
             x: [0, 50, 0],
@@ -236,6 +243,8 @@ export default function Hero() {
             left: '75%',
             top: '70%',
             background: 'radial-gradient(circle, rgba(168, 85, 247, 0.3), transparent 70%)',
+            willChange: 'transform',
+            transform: 'translateZ(0)',
           }}
           animate={{
             x: [0, -40, 0],
@@ -314,6 +323,20 @@ export default function Hero() {
             >
               <motion.a
                 href="#projects"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.getElementById('projects');
+                  if (element) {
+                    const navbarHeight = 64;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: 'smooth'
+                    });
+                    window.history.pushState(null, '', '#projects');
+                  }
+                }}
                 className="group inline-flex items-center gap-2 rounded-md px-5 py-3 text-sm font-medium text-background bg-accent hover:shadow-glow transition duration-200 ease-smooth"
                 variants={buttonVariants}
                 initial="rest"
@@ -335,6 +358,20 @@ export default function Hero() {
               </motion.a>
               <motion.a
                 href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.getElementById('contact');
+                  if (element) {
+                    const navbarHeight = 64;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: 'smooth'
+                    });
+                    window.history.pushState(null, '', '#contact');
+                  }
+                }}
                 className="inline-flex items-center gap-2 rounded-md px-5 py-3 text-sm font-medium text-slate-900 dark:text-text bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 transition duration-200 ease-smooth"
                 variants={buttonVariants}
                 initial="rest"

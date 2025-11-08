@@ -16,6 +16,10 @@
   /* Not supported; use class utilities for dark. */
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html, body, #root {
   height: 100%;
 }
@@ -26,6 +30,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: theme('fontFamily.body');
+  /* Performance optimizations */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 .font-heading { font-family: theme('fontFamily.heading'); }

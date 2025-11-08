@@ -141,6 +141,8 @@ function SolarSystem() {
             marginLeft: `-${planet.orbitRadius}px`,
             marginTop: `-${planet.orbitRadius}px`,
             transformOrigin: 'center center',
+            willChange: 'transform',
+            transform: 'translateZ(0)',
           }}
           animate={{
             rotate: [planet.angleOffset, planet.angleOffset + 360],
@@ -267,8 +269,8 @@ function SolarSystem() {
         </motion.div>
       ))}
 
-      {/* Starry background */}
-      {[...Array(60)].map((_, i) => {
+      {/* Starry background - Reduced for performance */}
+      {[...Array(25)].map((_, i) => {
         const seed = i * 7 + 13;
         const size = (seed % 3) + 1;
         const left = (seed * 17) % 100;
@@ -289,6 +291,8 @@ function SolarSystem() {
               background: isBright ? '#FFD700' : '#FFFFFF',
               opacity: isBright ? 0.9 : 0.5,
               boxShadow: isBright ? '0 0 4px rgba(255, 215, 0, 0.8)' : '0 0 2px rgba(255, 255, 255, 0.5)',
+              willChange: 'transform, opacity',
+              transform: 'translateZ(0)',
             }}
             animate={{
               opacity: isBright ? [0.7, 1, 0.7] : [0.3, 0.6, 0.3],
@@ -570,7 +574,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 rounded-lg bg-white dark:bg-surface border-2 border-accent/30 px-6 py-4 shadow-glow backdrop-blur-sm"
+            className="fixed bottom-6 inset-x-0 z-50 mx-auto w-fit rounded-lg bg-white dark:bg-surface border-2 border-accent/30 px-6 py-4 shadow-glow backdrop-blur-sm"
           >
             <motion.p
               className="text-sm font-medium text-slate-900 dark:text-text flex items-center gap-2"
