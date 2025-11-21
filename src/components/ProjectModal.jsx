@@ -61,7 +61,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm"
+            className="fixed inset-0 z-50 bg-black/70 dark:bg-black/70 backdrop-blur-sm"
             aria-hidden="true"
           />
 
@@ -97,7 +97,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
               <div className="flex-1 overflow-y-auto scrollbar-hide">
                 {/* Image Gallery */}
                 {project.images && project.images.length > 0 && (
-                  <div className="relative bg-slate-100 dark:bg-black/20">
+                  <div className="relative bg-slate-50 dark:bg-slate-900/20">
                     <div className="relative h-[50vh] sm:h-[55vh] md:h-[60vh] overflow-hidden flex items-center justify-center">
                       <AnimatePresence mode="wait">
                         <motion.img
@@ -117,7 +117,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                         <>
                           <button
                             onClick={prevImage}
-                            className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 hover:bg-black/70 dark:bg-white/20 dark:hover:bg-white/30 backdrop-blur-sm transition-colors text-white"
+                            className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/70 hover:bg-black/80 dark:bg-white/20 dark:hover:bg-white/30 backdrop-blur-sm transition-colors text-white"
                             aria-label="Previous image"
                           >
                             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -126,7 +126,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                           </button>
                           <button
                             onClick={nextImage}
-                            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 hover:bg-black/70 dark:bg-white/20 dark:hover:bg-white/30 backdrop-blur-sm transition-colors text-white"
+                            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/70 hover:bg-black/80 dark:bg-white/20 dark:hover:bg-white/30 backdrop-blur-sm transition-colors text-white"
                             aria-label="Next image"
                           >
                             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -144,8 +144,8 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                               key={index}
                               onClick={() => setCurrentImageIndex(index)}
                               className={`h-2 rounded-full transition-all ${index === currentImageIndex
-                                ? 'w-8 bg-white'
-                                : 'w-2 bg-white/50 hover:bg-white/75'
+                                ? 'w-8 bg-white dark:bg-white'
+                                : 'w-2 bg-white/70 dark:bg-white/50 hover:bg-white/90 dark:hover:bg-white/75'
                                 }`}
                               aria-label={`Go to image ${index + 1}`}
                             />

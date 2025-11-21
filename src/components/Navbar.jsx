@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiMenu, FiX } from 'react-icons/fi';
+import { FiMenu, FiMoon, FiSun, FiX } from 'react-icons/fi';
 import { fadeIn, transition } from '../utils/motion';
+import { useTheme } from '../hooks/useTheme';
 
 const NAV_ITEMS = [
   { id: 'home', label: 'Home' },
@@ -14,6 +15,7 @@ const NAV_ITEMS = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('home');
+  const { theme, toggleTheme } = useTheme('dark');
   const linkRefs = useRef({});
   const linksContainerRef = useRef(null);
   const [underline, setUnderline] = useState({ left: 0, width: 0 });
@@ -176,13 +178,13 @@ export default function Navbar() {
             />
           </div>
           <div className="flex items-center gap-3">
-            {/* <button
+            <button
               aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
               onClick={toggleTheme}
               className="p-2 rounded-md bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 transition-colors duration-200"
             >
               {theme === 'dark' ? <FiSun aria-hidden /> : <FiMoon aria-hidden />}
-            </button> */}
+            </button>
             <button
               aria-label={open ? 'Close menu' : 'Open menu'}
               className="md:hidden p-2 rounded-md bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10"

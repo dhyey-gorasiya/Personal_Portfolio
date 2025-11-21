@@ -120,8 +120,8 @@ function SolarSystem() {
             marginLeft: `-${planet.orbitRadius}px`,
             marginTop: `-${planet.orbitRadius}px`,
             borderRadius: '50%',
-            border: '1px solid rgba(255, 255, 255, 0.25)',
-            boxShadow: '0 0 2px rgba(255, 255, 255, 0.1)',
+            border: '1px solid rgba(148, 163, 184, 0.3)',
+            boxShadow: '0 0 2px rgba(148, 163, 184, 0.2)',
           }}
           aria-hidden="true"
         />
@@ -258,10 +258,10 @@ function SolarSystem() {
                   left: `${-planet.size * 0.4}px`,
                   top: `${-planet.size * 0.4}px`,
                   borderRadius: '50%',
-                  border: '2px solid rgba(245, 222, 179, 0.6)',
+                  border: '2px solid rgba(245, 222, 179, 0.8)',
                   borderTopColor: 'transparent',
                   borderBottomColor: 'transparent',
-                  boxShadow: '0 0 10px rgba(245, 222, 179, 0.3), inset 0 0 20px rgba(245, 222, 179, 0.2)',
+                  boxShadow: '0 0 10px rgba(245, 222, 179, 0.5), inset 0 0 20px rgba(245, 222, 179, 0.3)',
                 }}
               />
             )}
@@ -288,14 +288,16 @@ function SolarSystem() {
               height: `${size}px`,
               left: `${left}%`,
               top: `${top}%`,
-              background: isBright ? '#FFD700' : '#FFFFFF',
-              opacity: isBright ? 0.9 : 0.5,
-              boxShadow: isBright ? '0 0 4px rgba(255, 215, 0, 0.8)' : '0 0 2px rgba(255, 255, 255, 0.5)',
+              background: isBright ? '#FFD700' : '#64748B',
+              opacity: isBright ? 0.8 : 0.4,
+              boxShadow: isBright
+                ? '0 0 4px rgba(255, 215, 0, 0.8)'
+                : '0 0 2px rgba(100, 116, 139, 0.6)',
               willChange: 'transform, opacity',
               transform: 'translateZ(0)',
             }}
             animate={{
-              opacity: isBright ? [0.7, 1, 0.7] : [0.3, 0.6, 0.3],
+              opacity: isBright ? [0.6, 0.9, 0.6] : [0.3, 0.5, 0.3],
               scale: [1, isBright ? 1.5 : 1.2, 1],
             }}
             transition={{
@@ -524,7 +526,7 @@ export default function Contact() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="group relative w-full rounded-lg px-6 py-4 bg-accent text-background font-semibold overflow-hidden transition-all duration-300 hover:shadow-glow disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="group relative w-full rounded-lg px-6 py-4 bg-accent text-white dark:text-background font-semibold overflow-hidden transition-all duration-300 hover:shadow-glow disabled:opacity-60 disabled:cursor-not-allowed"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -532,7 +534,7 @@ export default function Contact() {
                     {isSubmitting ? (
                       <>
                         <motion.div
-                          className="w-5 h-5 border-2 border-background border-t-transparent rounded-full"
+                          className="w-5 h-5 border-2 border-white dark:border-background border-t-transparent rounded-full"
                           animate={{ rotate: 360 }}
                           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                         />

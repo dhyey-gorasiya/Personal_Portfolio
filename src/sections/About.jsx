@@ -44,15 +44,15 @@ export default function About() {
                 src="https://i.postimg.cc/L5mD921g/shared-image.jpg"
                 alt="Profile"
                 loading="lazy"
-                className="relative w-48 h-48 rounded-2xl object-cover ring-2 ring-white/10 shadow-glow"
+                className="relative w-48 h-48 rounded-2xl object-cover ring-2 ring-slate-200 dark:ring-white/10 shadow-glow"
                 width={384}
                 height={384}
                 whileHover={{ rotate: -3, scale: 1.02 }}
                 transition={{ type: 'spring', stiffness: 250, damping: 18 }}
               />
             </div>
-            <h2 className="mt-6 text-2xl font-heading font-semibold">About Me</h2>
-            <p className="mt-2 text-muted">Full Stack Developer focused on building web applications and APIs using Anguler, Node.js, and MySQL.</p>
+            <h2 className="mt-6 text-2xl font-heading font-semibold text-slate-900 dark:text-text">About Me</h2>
+            <p className="mt-2 text-slate-700 dark:text-muted">Full Stack Developer focused on building web applications and APIs using Anguler, Node.js, and MySQL.</p>
           </motion.div>
           <motion.div variants={fadeUp} className="md:col-span-2">
             <motion.div
@@ -71,8 +71,8 @@ export default function About() {
                 animate="rest"
                 variants={cardHover}
               >
-                <h3 className="font-medium">Location</h3>
-                <p className="text-slate-600 dark:text-muted">Remote / Worldwide</p>
+                <h3 className="font-medium text-slate-900 dark:text-text">Location</h3>
+                <p className="text-slate-600 dark:text-muted mt-1">Remote / Worldwide</p>
                 <motion.span
                   className="pointer-events-none absolute -inset-px rounded-xl"
                   style={{ background: 'linear-gradient(120deg, rgba(124,92,255,0.12), transparent 40%, rgba(59,130,246,0.12))' }}
@@ -89,8 +89,8 @@ export default function About() {
                 animate="rest"
                 variants={cardHover}
               >
-                <h3 className="font-medium">Experience</h3>
-                <p className="text-slate-600 dark:text-muted">1+ years</p>
+                <h3 className="font-medium text-slate-900 dark:text-text">Experience</h3>
+                <p className="text-slate-600 dark:text-muted mt-1">1+ years</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
@@ -101,8 +101,8 @@ export default function About() {
                 animate="rest"
                 variants={cardHover}
               >
-                <h3 className="font-medium">Specialty</h3>
-                <p className="text-slate-600 dark:text-muted">React, TypeScript, Anguler, Tailwind CSS</p>
+                <h3 className="font-medium text-slate-900 dark:text-text">Specialty</h3>
+                <p className="text-slate-600 dark:text-muted mt-1">React, TypeScript, Anguler, Tailwind CSS</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
@@ -113,12 +113,12 @@ export default function About() {
                 animate="rest"
                 variants={cardHover}
               >
-                <h3 className="font-medium">Interests</h3>
-                <p className="text-slate-600 dark:text-muted">Web Development, UI/UX Design</p>
+                <h3 className="font-medium text-slate-900 dark:text-text">Interests</h3>
+                <p className="text-slate-600 dark:text-muted mt-1">Web Development, UI/UX Design</p>
               </motion.div>
             </motion.div>
             <div className="mt-8">
-              <h3 className="font-heading font-semibold text-lg">Timeline</h3>
+              <h3 className="font-heading font-semibold text-lg text-slate-900 dark:text-text">Timeline</h3>
               <div className="relative mt-4 pl-6">
                 {/* Animated vertical line */}
                 <motion.span
@@ -138,14 +138,14 @@ export default function About() {
                     title: 'Intern', time: 'Mar 2024 — Dec 2024', desc: 'Developing web applications using Anguler.'
                   }].map((item, i) => (
                     <motion.li key={i} className="relative" custom={i} variants={timelineItem} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
-                      <span className="absolute top-1/2 -translate-y-1/2 left-[-1.8125rem] h-2.5 w-2.5 rounded-full bg-accent ring-4 ring-background shadow-glow" aria-hidden />
+                      <span className="absolute top-1/2 -translate-y-1/2 left-[-1.8125rem] h-2.5 w-2.5 rounded-full bg-accent ring-4 ring-white dark:ring-background shadow-glow" aria-hidden />
                       <motion.div
                         className="rounded-lg bg-black/5 dark:bg-white/5 border border-slate-200 dark:border-white/5 p-4"
                         whileHover={{ scale: 1.01 }}
                         transition={{ duration: 0.2 }}
                       >
                         <div className="flex items-center justify-between gap-4">
-                          <p className="font-medium">{item.title}</p>
+                          <p className="font-medium text-slate-900 dark:text-text">{item.title}</p>
                           <span className="text-xs text-slate-600 dark:text-muted">{item.time}</span>
                         </div>
                         <p className="mt-2 text-sm text-slate-600 dark:text-muted">{item.desc}</p>

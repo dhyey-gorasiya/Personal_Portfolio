@@ -16,7 +16,7 @@ export default function Projects() {
     <section id="projects" aria-label="Projects" className="relative py-16 sm:py-24 md:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-4">
-          <h2 className="text-2xl font-heading font-semibold">Featured Projects</h2>
+          <h2 className="text-2xl font-heading font-semibold text-slate-900 dark:text-text">Featured Projects</h2>
           {/* <div role="tablist" aria-label="Project filters" className="hidden sm:flex flex-wrap gap-2">
             {tags.map((t) => (
               <button
@@ -50,7 +50,7 @@ export default function Projects() {
             >
               <div className="relative">
                 <img src={p.image} alt={p.title} loading="lazy" className="h-44 w-full object-cover" />
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-t from-background/70 to-transparent" aria-hidden />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-t from-white/90 dark:from-background/70 to-transparent" aria-hidden />
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center" aria-hidden>
                   <span className="text-white font-medium text-sm bg-accent/80 backdrop-blur-sm px-4 py-2 rounded-md">
                     View Details
