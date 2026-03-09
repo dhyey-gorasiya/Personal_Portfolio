@@ -9,16 +9,18 @@ import Footer from './sections/Footer';
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Projects />
-        <Skills />
-        <Contact />
-      </main>
-      <Footer />
+    <div className="flex flex-col">
+      <div className="mx-auto w-full flex-1 flex flex-col">
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Projects />
+          <Skills />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }

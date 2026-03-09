@@ -138,7 +138,7 @@ export default function Navbar() {
     <motion.nav
       role="navigation"
       aria-label="Primary"
-      className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-surface/70 border-b border-slate-200 dark:border-white/5"
+      className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-surface/70 border-b border-slate-300 dark:border-white/5"
       variants={fadeIn}
       initial="hidden"
       animate="visible"

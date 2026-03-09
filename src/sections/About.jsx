@@ -52,7 +52,7 @@ export default function About() {
               />
             </div>
             <h2 className="mt-6 text-2xl font-heading font-semibold text-slate-900 dark:text-text">About Me</h2>
-            <p className="mt-2 text-slate-700 dark:text-muted">Full Stack Developer focused on building web applications and APIs using Anguler, Node.js, and MySQL.</p>
+            <p className="mt-2 text-slate-700 dark:text-muted">Detail-oriented Full Stack Developer with hands-on experience in Angular, React, JavaScript, and modern web technologies. Passionate about building responsive, high-performance applications and improving user experience through clean and efficient code.</p>
           </motion.div>
           <motion.div variants={fadeUp} className="md:col-span-2">
             <motion.div

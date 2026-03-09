@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ProjectModal({ project, isOpen, onClose }) {
@@ -51,7 +52,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
     setCurrentImageIndex((prev) => (prev > 0 ? prev - 1 : project.images.length - 1));
   };
 
-  return (
+  const modalContent = (
     <AnimatePresence>
       {isOpen && (
         <>
@@ -217,31 +218,37 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                     </div>
                   </div>
 
-                  {/* Links */}
-                  <div className="flex items-center gap-4 pt-4 border-t border-slate-200 dark:border-white/10">
-                    <a
-                      href={project.links.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-sm font-medium text-background bg-accent hover:shadow-glow transition-all duration-200 ease-smooth"
-                    >
-                      View Demo
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </a>
-                    <a
-                      href={project.links.code}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-sm font-medium text-slate-900 dark:text-text bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 transition-all duration-200 ease-smooth"
-                    >
-                      View Code
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                      </svg>
-                    </a>
-                  </div>
+                  {/* Links - only show Demo/Code when not NA */}
+                  {(String(project.links.demo).toUpperCase() !== 'NA' || String(project.links.code).toUpperCase() !== 'NA') && (
+                    <div className="flex items-center gap-4 pt-4 border-t border-slate-200 dark:border-white/10">
+                      {String(project.links.demo).toUpperCase() !== 'NA' && (
+                        <a
+                          href={project.links.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-sm font-medium text-background bg-accent hover:shadow-glow transition-all duration-200 ease-smooth"
+                        >
+                          View Demo
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      )}
+                      {String(project.links.code).toUpperCase() !== 'NA' && (
+                        <a
+                          href={project.links.code}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-sm font-medium text-slate-900 dark:text-text bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 transition-all duration-200 ease-smooth"
+                        >
+                          View Code
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                          </svg>
+                        </a>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -250,5 +257,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
       )}
     </AnimatePresence>
   );
+
+  return createPortal(modalContent, document.body);
 }
 

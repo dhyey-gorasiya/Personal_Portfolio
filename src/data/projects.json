@@ -1,89 +1,245 @@
 [
   {
     "id": "p1",
-    "title": "Design System",
+    "title": "Online Restaurant Table Reservation System (Your Food)",
     "tags": [
-      "React",
-      "Tailwind",
-      "Accessibility"
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap",
+      "PHP",
+      "MySQL"
     ],
     "image": "https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80&auto=format&fit=crop",
-    "summary": "Composable UI kit with theming and WCAG compliance.",
-    "description": "A comprehensive design system built with React and Tailwind CSS, featuring customizable theming, full WCAG 2.1 AA compliance, and a composable component architecture. The system includes over 50 reusable components, dark mode support, and comprehensive documentation.",
+    "summary": "A web-based system that enables customers to reserve restaurant tables online.",
+    "description": "A web-based system that enables customers to reserve restaurant tables online. The system helps restaurants manage reservations efficiently while improving customer convenience.",
     "features": [
-      "WCAG 2.1 AA compliant components",
-      "Customizable theme system with dark mode",
-      "50+ reusable components",
-      "TypeScript support",
-      "Comprehensive documentation",
-      "Accessible keyboard navigation"
+      "Online table reservation with date and time selection",
+      "Customer registration and login modules",
+      "Reservation management system for restaurant administrators",
+      "Efficient reservation workflow for staff and customers"
     ],
     "images": [
       "https://images.unsplash.com/photo-1547658719-da2b51169166?w=1200&q=80&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1200&q=80&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&q=80&auto=format&fit=crop"
     ],
     "links": {
-      "demo": "#",
-      "code": "#"
+      "demo": "NA",
+      "code": "NA"
     }
   },
   {
     "id": "p2",
-    "title": "Analytics Dashboard",
+    "title": "Online Book Selling Website (Bookly)",
     "tags": [
-      "TypeScript",
-      "Charts",
-      "Performance"
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap",
+      "PHP",
+      "MySQL"
     ],
-    "image": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&q=80&auto=format&fit=crop",
-    "summary": "High-performance dashboard with lazy loading and virtualization.",
-    "description": "A high-performance analytics dashboard built with TypeScript and React, featuring real-time data visualization, lazy loading, and virtualization for handling large datasets. The dashboard includes interactive charts, customizable widgets, and export functionality.",
+    "image": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1200&q=80&auto=format&fit=crop",
+    "summary": "A web-based system that enables customers to sell books online.",
+    "description": "A web-based system that enables customers to sell books online. The system helps customers sell books efficiently while improving customer convenience.",
     "features": [
-      "Real-time data visualization",
-      "Virtual scrolling for large datasets",
-      "Interactive charts and graphs",
-      "Customizable dashboard widgets",
-      "Export to PDF/CSV",
-      "Responsive design for all devices"
+      "Online book selling with book listing and search features",
+      "Customer registration and login modules",
+      "Book management system for book sellers",
+      "Efficient book selling workflow for customers"
     ],
     "images": [
-      "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1200&q=80&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80&auto=format&fit=crop"
+      "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1200&q=80&auto=format&fit=crop"
     ],
     "links": {
-      "demo": "#",
-      "code": "#"
+      "demo": "NA",
+      "code": "NA"
     }
   },
   {
     "id": "p3",
-    "title": "E-commerce UI",
+    "title": "Online Clothing Website (Shivay)",
     "tags": [
-      "Next.js",
-      "Stripe",
-      "Animations"
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap",
+      "React JS",
+      "Redux",
+      "Nest JS",
+      "Firebase"
     ],
-    "image": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1200&q=80&auto=format&fit=crop",
-    "summary": "Delightful shopping experience with motion and accessibility.",
-    "description": "A modern e-commerce platform built with Next.js and Stripe integration, featuring smooth animations, accessible design, and optimized performance. The platform includes product search, filtering, cart management, and secure checkout flow.",
+    "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80&auto=format&fit=crop",
+    "summary": "Full-stack e-commerce web application for browsing clothing, managing carts, and completing purchases.",
+    "description": "Shivay is a full-stack e-commerce web application that allows users to browse clothing products, manage shopping carts, and complete purchases online with a modern UI experience.",
     "features": [
-      "Next.js SSR for optimal performance",
-      "Stripe payment integration",
-      "Smooth animations and transitions",
-      "Advanced product search and filtering",
-      "Shopping cart with persistence",
-      "Mobile-first responsive design"
+      "Product listing, filtering, and search features",
+      "Responsive UI components using HTML, CSS, and Bootstrap",
+      "Backend integration using Nest JS for product and order management",
+      "Shopping cart and checkout flow"
     ],
     "images": [
-      "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=80&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=1200&q=80&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80&auto=format&fit=crop"
     ],
     "links": {
-      "demo": "#",
-      "code": "#"
+      "demo": "NA",
+      "code": "NA"
+    }
+  },
+  {
+    "id": "p4",
+    "title": "Online School Management System (Lok Jagruti Kendra)",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap",
+      "Next JS",
+      "Prisma ORM",
+      "PostgreSQL"
+    ],
+    "image": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80&auto=format&fit=crop",
+    "summary": "Web-based school management system for students, teachers, classes, and academic records.",
+    "description": "A web-based school management system that helps administrators manage students, teachers, classes, and academic records digitally.",
+    "features": [
+      "Modules for student management, teacher records, attendance, and academic data",
+      "Secure backend integration using Prisma ORM and PostgreSQL",
+      "Role-based access for admin, teachers, students, and parents",
+      "Centralized academic and administrative data"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=80&auto=format&fit=crop"
+    ],
+    "links": {
+      "demo": "NA",
+      "code": "NA"
+    }
+  },
+  {
+    "id": "p5",
+    "title": "Online Brokerage Management System (NDDS)",
+    "tags": [
+      "HTML",
+      "Tailwind CSS",
+      "JavaScript",
+      "React JS",
+      "Nest JS",
+      "Firebase"
+    ],
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80&auto=format&fit=crop",
+    "summary": "Brokerage management platform for transactions, client records, and contract details.",
+    "description": "A brokerage management platform designed to manage brokerage transactions, client records, and contract details efficiently.",
+    "features": [
+      "Modules to manage brokerage contracts and transaction records",
+      "Client management and data tracking features",
+      "Data validation and secure data storage",
+      "Streamlined workflow for brokerage operations"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80&auto=format&fit=crop"
+    ],
+    "links": {
+      "demo": "NA",
+      "code": "NA"
+    }
+  },
+  {
+    "id": "p6",
+    "title": "Dynamic Portfolio Website (Phiomyst Healthcare)",
+    "tags": [
+      "HTML",
+      "Tailwind CSS",
+      "JavaScript",
+      "React JS",
+      "Nest JS",
+      "Firebase"
+    ],
+    "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80&auto=format&fit=crop",
+    "summary": "Dynamic portfolio website for a healthcare organization with services, projects, and company information.",
+    "description": "A dynamic portfolio website developed for a healthcare organization to showcase services, projects, and company information with an interactive interface.",
+    "features": [
+      "Dynamic content rendering using Redux state management",
+      "Backend API integration using Nest JS",
+      "Optimized website performance and responsiveness across devices",
+      "Interactive interface for services and projects"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1551076805-e1869033e561?w=1200&q=80&auto=format&fit=crop"
+    ],
+    "links": {
+      "demo": "NA",
+      "code": "NA"
+    }
+  },
+  {
+    "id": "p7",
+    "title": "Smart Medical Inventory System (VaidyaMed)",
+    "tags": [
+      "HTML",
+      "Tailwind CSS",
+      "JavaScript",
+      "React JS",
+      "Next JS",
+      "MongoDB"
+    ],
+    "image": "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&q=80&auto=format&fit=crop",
+    "summary": "Medical inventory management system for medicines, stock levels, suppliers, and transactions.",
+    "description": "A medical inventory management system designed to track medicines, stock levels, suppliers, and inventory transactions efficiently.",
+    "features": [
+      "Modules for medicine inventory tracking and stock management",
+      "Real-time inventory updates and stock alerts",
+      "Real-time stock clearing alerts (expire date wise, profit wise, or stock wise)",
+      "Supplier and transaction tracking"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1584305574647-0cc949a2d0a4?w=1200&q=80&auto=format&fit=crop"
+    ],
+    "links": {
+      "demo": "NA",
+      "code": "NA"
+    }
+  },
+  {
+    "id": "p8",
+    "title": "Bulk Whatsapp Message Sender System",
+    "tags": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Electron JS",
+      "Next JS",
+      "Firebase"
+    ],
+    "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&q=80&auto=format&fit=crop",
+    "summary": "Bulk Whatsapp Message Sender System for sending messages to multiple users at once.",
+    "description": "A bulk Whatsapp Message Sender System designed to send messages to multiple users at once. The system helps users send messages to multiple users at once efficiently.",
+    "features": [
+      "Modules for sending messages to multiple users at once",
+      "Real-time message sending and status tracking",
+      "Upload Excel file to send messages to multiple users at once",
+      "Download the sent messages in Excel file"
+    ],
+    "images": [
+      "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1556656793-08538906a9f8?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=1200&q=80&auto=format&fit=crop"
+    ],
+    "links": {
+      "demo": "NA",
+      "code": "NA"
     }
   }
 ]
