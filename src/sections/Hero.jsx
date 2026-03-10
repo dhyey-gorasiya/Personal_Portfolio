@@ -261,15 +261,15 @@ export default function Hero() {
         />
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28 md:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 sm:py-13 md:py-15">
         <motion.div
           variants={staggerContainer(0.15, 0.2)}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center"
+          className="grid grid-cols-1 md:grid-cols-5 gap-10 items-center"
         >
-          <motion.div variants={fadeUp}>
+          <motion.div variants={fadeUp} className="md:col-span-3 pl-0 md:pl-10">
             {/* Animated badge */}
             <motion.span
               className="inline-flex items-center gap-2 rounded-full bg-slate-100 dark:bg-white/5 px-3 py-1 text-xs text-slate-800 dark:text-muted font-medium"
@@ -294,14 +294,20 @@ export default function Hero() {
 
             {/* Animated heading with gradient effect */}
             <motion.h1
-              className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-heading font-semibold tracking-tight text-slate-900 dark:text-text"
+              className="mt-5 text-3xl sm:text-4xl lg:text-6xl font-heading font-semibold tracking-tight text-slate-900 dark:text-text"
               variants={textReveal}
             >
-              Hi, I'm{' '}
+              Hi, I'm
+            </motion.h1>
+            <motion.h1
+              className="text-3xl sm:text-4xl lg:text-6xl font-heading font-semibold tracking-tight text-slate-900 dark:text-text"
+              variants={textReveal}
+            >
               <span className="bg-gradient-to-r from-accent to-secondary bg-clip-text text-transparent whitespace-nowrap">
                 Dhyey Gorasiya
               </span>
             </motion.h1>
+
             <motion.h2
               className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-heading font-semibold tracking-tight text-slate-900 dark:text-text"
               variants={textReveal}
@@ -407,7 +413,7 @@ export default function Hero() {
           {/* Animated avatar section */}
           <motion.div
             variants={fadeUp}
-            className="justify-self-center"
+            className="justify-self-center md:col-span-2"
             animate={floatingAnimation}
           >
             <div className="relative">

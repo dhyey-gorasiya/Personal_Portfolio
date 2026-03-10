@@ -1,13 +1,18 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import data from '../data/projects.json';
 import ProjectModal from '../components/ProjectModal';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
+const SWIPE_THRESHOLD = 50;
+
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [index, setIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(1);
+  const swipeStart = useRef({ x: 0, y: 0 });
+  const justSwiped = useRef(false);
+  const mouseDownOnCarousel = useRef(false);
 
   const updateCardsPerView = useCallback(() => {
     const w = window.innerWidth;
@@ -29,28 +34,81 @@ export default function Projects() {
   const goPrev = () => setIndex((i) => Math.max(0, i - 1));
   const goNext = () => setIndex((i) => Math.min(maxIndex, i + 1));
 
+  const handleSwipeEnd = useCallback(
+    (endX) => {
+      const dx = swipeStart.current.x - endX;
+      if (Math.abs(dx) < SWIPE_THRESHOLD) return;
+      if (dx > 0) {
+        justSwiped.current = true;
+        goNext();
+      } else {
+        justSwiped.current = true;
+        goPrev();
+      }
+    },
+    [maxIndex, index]
+  );
+
+  const touchStart = (e) => {
+    swipeStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  };
+  const touchEnd = (e) => {
+    if (!e.changedTouches[0]) return;
+    handleSwipeEnd(e.changedTouches[0].clientX);
+  };
+  const mouseDown = (e) => {
+    mouseDownOnCarousel.current = true;
+    swipeStart.current = { x: e.clientX, y: e.clientY };
+  };
+  const mouseUp = (e) => {
+    if (mouseDownOnCarousel.current) {
+      handleSwipeEnd(e.clientX);
+      mouseDownOnCarousel.current = false;
+    }
+  };
+  const onCardClick = (p) => {
+    if (justSwiped.current) {
+      justSwiped.current = false;
+      return;
+    }
+    setSelectedProject(p);
+  };
+
   // Each card is (100 / data.length)% of track; moving by 1 card = translateX(-100/data.length %)
   const translatePercent = (index / data.length) * 100;
 
+  const navButtonClass =
+    'p-2.5 rounded-full border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-surface/80 text-slate-700 dark:text-muted disabled:opacity-40 disabled:cursor-not-allowed hover:bg-accent hover:text-white hover:border-accent transition-colors shadow-md';
+
   return (
-    <section id="projects" aria-label="Projects" className="relative py-16 sm:py-24 md:py-28">
+    <section id="projects" aria-label="Projects" className="relative py-14 sm:py-15 md:py-18">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-2xl font-heading font-semibold text-slate-900 dark:text-text">Featured Projects</h2>
+        <h2 className="text-2xl font-heading font-semibold text-slate-900 dark:text-text">
+          Featured Projects
+          <span className="ml-2 text-lg font-normal border border-slate-200 dark:border-white/10 rounded-md px-2 py-0.5 text-slate-500 dark:text-muted ">{data.length}</span>
+        </h2>
 
         <div className="mt-8 flex items-stretch gap-4">
-          {/* Previous - left side */}
+          {/* Previous - left side (hidden on mobile) */}
           <button
             type="button"
             onClick={goPrev}
             disabled={!canPrev}
             aria-label="Previous project"
-            className="flex-shrink-0 self-center p-3 rounded-full border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-surface/80 text-slate-700 dark:text-muted disabled:opacity-40 disabled:cursor-not-allowed hover:bg-accent hover:text-white hover:border-accent transition-colors shadow-md -translate-y-2"
+            className={`flex-shrink-0 self-center ${navButtonClass} -translate-y-2 hidden sm:flex`}
           >
             <FaChevronLeft className="w-5 h-5" />
           </button>
 
-          {/* Carousel viewport */}
-          <div className="flex-1 min-w-0 overflow-hidden">
+          {/* Carousel viewport - touch/mouse swipe */}
+          <div
+            className="flex-1 min-w-0 overflow-hidden touch-pan-y select-none"
+            onTouchStart={touchStart}
+            onTouchEnd={touchEnd}
+            onMouseDown={mouseDown}
+            onMouseUp={mouseUp}
+            onMouseLeave={() => { mouseDownOnCarousel.current = false; }}
+          >
             <motion.div
               className="flex"
               style={{
@@ -69,7 +127,7 @@ export default function Projects() {
                     whileHover={{ y: -4, scale: 1.02 }}
                     transition={{ duration: 0.2 }}
                     className="group h-full rounded-xl bg-white/60 dark:bg-surface/60 border border-slate-200 dark:border-white/5 overflow-hidden cursor-pointer"
-                    onClick={() => setSelectedProject(p)}
+                    onClick={() => onCardClick(p)}
                   >
                     <div className="relative">
                       <img src={p.image} alt={p.title} loading="lazy" className="h-44 w-full object-cover" />
@@ -115,35 +173,56 @@ export default function Projects() {
             </motion.div>
           </div>
 
-          {/* Next - right side */}
+          {/* Next - right side (hidden on mobile) */}
           <button
             type="button"
             onClick={goNext}
             disabled={!canNext}
             aria-label="Next project"
-            className="flex-shrink-0 self-center p-3 rounded-full border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-surface/80 text-slate-700 dark:text-muted disabled:opacity-40 disabled:cursor-not-allowed hover:bg-accent hover:text-white hover:border-accent transition-colors shadow-md -translate-y-2"
+            className={`flex-shrink-0 self-center ${navButtonClass} -translate-y-2 hidden sm:flex`}
           >
             <FaChevronRight className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Dot indicators */}
-        <div className="mt-6 flex justify-center gap-2 flex-wrap" role="tablist" aria-label="Project position">
-          {Array.from({ length: maxIndex + 1 }).map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              role="tab"
-              aria-selected={index === i}
-              aria-label={`Go to position ${i + 1}`}
-              onClick={() => setIndex(i)}
-              className={`h-2 rounded-full transition-all ${
-                index === i
-                  ? 'w-6 bg-accent'
-                  : 'w-2 bg-slate-300 dark:bg-white/20 hover:bg-slate-400 dark:hover:bg-white/30'
-              }`}
-            />
-          ))}
+        {/* Mobile: Prev + Dots + Next | Desktop: Dots only */}
+        <div className="mt-6 flex justify-center items-center gap-3 sm:gap-2 flex-wrap" role="tablist" aria-label="Project position">
+          {/* Mobile-only Prev (left of dots) */}
+          <button
+            type="button"
+            onClick={goPrev}
+            disabled={!canPrev}
+            aria-label="Previous project"
+            className={`${navButtonClass} sm:hidden`}
+          >
+            <FaChevronLeft className="w-5 h-5" />
+          </button>
+          {/* Dot indicators */}
+          <div className="flex gap-2 flex-wrap justify-center">
+            {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                role="tab"
+                aria-selected={index === i}
+                aria-label={`Go to project ${i + 1}`}
+                onClick={() => setIndex(i)}
+                className={`h-2 rounded-full transition-all ${
+                  index === i ? 'w-6 bg-accent' : 'w-2 bg-slate-300 dark:bg-white/20 hover:bg-slate-400 dark:hover:bg-white/30'
+                }`}
+              />
+            ))}
+          </div>
+          {/* Mobile-only Next (right of dots) */}
+          <button
+            type="button"
+            onClick={goNext}
+            disabled={!canNext}
+            aria-label="Next project"
+            className={`${navButtonClass} sm:hidden`}
+          >
+            <FaChevronRight className="w-5 h-5" />
+          </button>
         </div>
       </div>
 

@@ -4,7 +4,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative mt-20 overflow-hidden">
+    <footer className="relative  overflow-hidden">
       {/* Animated gradient line */}
       <motion.div
         className="h-0.5 w-full"

@@ -39,15 +39,16 @@ function SkillsModal({ isOpen, onClose, allSkills }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.3, ease: [0.22, 0.95, 0.36, 1] }}
-            className="fixed inset-2 sm:inset-4 md:inset-6 z-50 overflow-hidden max-w-4xl mx-auto"
+            className="fixed inset-2 sm:inset-4 md:inset-6 z-50 overflow-hidden max-w-4xl mx-auto flex flex-col"
             role="dialog"
             aria-modal="true"
             aria-labelledby="skills-modal-title"
           >
-            <div className="h-auto w-full bg-white dark:bg-surface rounded-xl shadow-2xl border border-slate-200 dark:border-white/10 flex flex-col overflow-hidden">
-              <div className="flex items-center justify-between px-4 py-3 sm:px-5 sm:py-3.5 border-b border-slate-200 dark:border-white/10">
-                <h2 id="skills-modal-title" className="text-lg sm:text-xl font-heading font-semibold text-slate-900 dark:text-text">
+            <div className="flex flex-col min-h-0 w-full flex-1 bg-white dark:bg-surface rounded-xl shadow-2xl border border-slate-200 dark:border-white/10 overflow-hidden">
+              <div className="flex-shrink-0 flex items-center justify-between px-4 py-3 sm:px-5 sm:py-3.5 border-b border-slate-200 dark:border-white/10">
+                <h2 id="skills-modal-title" className="text-2xl font-heading font-semibold text-slate-900 dark:text-text">
                   All Skills
+                  <span className="ml-2 text-lg font-normal border border-slate-200 dark:border-white/10 rounded-md px-2 py-0.5 text-slate-500 dark:text-muted ">{allSkills.length}</span>
                 </h2>
                 <button
                   onClick={onClose}
@@ -59,7 +60,7 @@ function SkillsModal({ isOpen, onClose, allSkills }) {
                   </svg>
                 </button>
               </div>
-              <div className="flex-1 overflow-y-auto p-4 sm:p-6">
+              <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden p-4 sm:p-6 overscroll-contain" style={{ WebkitOverflowScrolling: 'touch' }}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {allSkills.map((skill, index) => (
                     <motion.div
@@ -239,7 +240,7 @@ export default function Skills() {
   const visibleSkills = hasMoreThanEight ? skills.slice(0, VISIBLE_SKILLS_LIMIT) : skills;
 
   return (
-    <section id="skills" aria-label="Skills" className="relative py-16 sm:py-24 md:py-28 overflow-hidden">
+    <section id="skills" aria-label="Skills" className="relative py-16 sm:py-24 md:py-24 overflow-hidden">
       {/* Animated background decoration */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <motion.div
@@ -282,6 +283,7 @@ export default function Skills() {
           transition={{ duration: 0.6, ease: [0.22, 0.95, 0.36, 1] }}
         >
           Skills
+          <span className="ml-2 text-lg font-normal border border-slate-200 dark:border-white/10 rounded-md px-2 py-0.5 text-slate-500 dark:text-muted ">{skills.length}</span>
         </motion.h2>
 
         <motion.div

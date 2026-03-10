@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiMenu, FiMoon, FiSun, FiX } from 'react-icons/fi';
+import { FiMenu, FiMoon, FiSun, FiX, FiDownload } from 'react-icons/fi';
 import { fadeIn, transition } from '../utils/motion';
 import { useTheme } from '../hooks/useTheme';
+
+// Resume PDF from assets – opens in new tab
+import resumePdf from '../assets/pdf/Dhyey Gorasiya (Resume).pdf';
 
 const NAV_ITEMS = [
   { id: 'home', label: 'Home' },
@@ -179,8 +182,19 @@ export default function Navbar() {
           </div>
           <div className="flex items-center gap-3">
             <button
+              type="button"
+              onClick={() => window.open(resumePdf, '_blank', 'noopener,noreferrer')}
+              aria-label="Open resume PDF in new tab"
+              title="Download Resume"
+              className="p-2 rounded-md bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 transition-colors duration-200 flex items-center gap-2"
+            >
+              <FiDownload aria-hidden />
+              <span className="text-xs">Resume</span>
+            </button>
+            <button
               aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
               onClick={toggleTheme}
+              title={theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
               className="p-2 rounded-md bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 transition-colors duration-200"
             >
               {theme === 'dark' ? <FiSun aria-hidden /> : <FiMoon aria-hidden />}
