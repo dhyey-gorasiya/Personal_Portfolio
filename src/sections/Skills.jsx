@@ -68,7 +68,7 @@ function SkillsModal({ isOpen, onClose, allSkills }) {
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.04, duration: 0.3 }}
-                      className="rounded-xl bg-white/80 dark:bg-slate-800/50 border border-slate-200 dark:border-white/10 p-4"
+                      className="rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-white/10 p-4"
                     >
                       <div className="flex items-center justify-between mb-2">
                         <span className="font-medium text-slate-900 dark:text-text">{skill.name}</span>
@@ -140,7 +140,7 @@ function SkillCard({ skill, index }) {
         scale: 1.03,
         transition: { duration: 0.3, ease: "easeOut" }
       }}
-      className="group rounded-xl bg-white/60 dark:bg-surface/60 border border-slate-200 dark:border-white/5 p-5 relative overflow-hidden cursor-pointer"
+      className="group rounded-xl bg-white dark:bg-surface border border-slate-200 dark:border-white/10 p-5 relative overflow-hidden cursor-pointer"
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       {/* Animated background gradient on hover */}
@@ -154,7 +154,7 @@ function SkillCard({ skill, index }) {
 
       {/* Glow effect on hover */}
       <motion.div
-        className="absolute -inset-0.5 rounded-xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300"
+        className="absolute -inset-0.5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{
           background: 'linear-gradient(135deg, rgba(124, 92, 255, 0.3) 0%, rgba(0, 229, 196, 0.3) 100%)',
         }}
@@ -241,39 +241,6 @@ export default function Skills() {
 
   return (
     <section id="skills" aria-label="Skills" className="relative py-16 sm:py-24 md:py-24 overflow-hidden">
-      {/* Animated background decoration */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-accent/5 blur-3xl"
-          animate={{
-            x: [0, 50, 0],
-            y: [0, 30, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          aria-hidden="true"
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-secondary/5 blur-3xl"
-          animate={{
-            x: [0, -50, 0],
-            y: [0, -30, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1,
-          }}
-          aria-hidden="true"
-        />
-      </div>
-
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.h2
           className="text-2xl font-heading font-semibold text-slate-900 dark:text-text"
@@ -308,7 +275,7 @@ export default function Skills() {
                 scale: 1.03,
                 transition: { duration: 0.3, ease: "easeOut" }
               }}
-              className="group rounded-xl bg-white/60 dark:bg-surface/60 border border-slate-200 dark:border-white/5 p-5 relative overflow-hidden cursor-pointer"
+              className="group rounded-xl bg-white dark:bg-surface border border-slate-200 dark:border-white/10 p-5 relative overflow-hidden cursor-pointer"
               whileTap={{ scale: 0.98 }}
               onClick={() => setShowAllSkillsOpen(true)}
             >

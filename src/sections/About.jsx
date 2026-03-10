@@ -164,13 +164,6 @@ export default function About() {
               className="relative w-full md:w-auto flex justify-center md:inline-block cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 rounded-2xl"
               aria-label="View profile gallery"
             >
-              {/* Soft orbiting glow */}
-              <motion.div
-                className="absolute -inset-6 rounded-2xl blur-3xl opacity-25 bg-[radial-gradient(circle_at_center,theme(colors.accent/60),transparent_60%)]"
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
-                aria-hidden
-              />
               {/* Avatar with hover tilt - full width & centered on mobile */}
               <motion.img
                 src="https://i.postimg.cc/L5mD921g/shared-image.jpg"
@@ -198,7 +191,7 @@ export default function About() {
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
-                className="rounded-xl bg-white/60 dark:bg-surface/60 border border-slate-200 dark:border-white/5 p-5 relative overflow-hidden"
+                className="rounded-xl bg-white dark:bg-surface border border-slate-200 dark:border-white/10 p-5 relative overflow-hidden"
                 whileHover="hover"
                 animate="rest"
                 variants={cardHover}
@@ -216,7 +209,7 @@ export default function About() {
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
-                className="rounded-xl bg-white/60 dark:bg-surface/60 border border-slate-200 dark:border-white/5 p-5 relative overflow-hidden"
+                className="rounded-xl bg-white dark:bg-surface border border-slate-200 dark:border-white/10 p-5 relative overflow-hidden"
                 whileHover="hover"
                 animate="rest"
                 variants={cardHover}
@@ -228,7 +221,7 @@ export default function About() {
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
-                className="rounded-xl bg-white/60 dark:bg-surface/60 border border-slate-200 dark:border-white/5 p-5 relative overflow-hidden"
+                className="rounded-xl bg-white dark:bg-surface border border-slate-200 dark:border-white/10 p-5 relative overflow-hidden"
                 whileHover="hover"
                 animate="rest"
                 variants={cardHover}
@@ -240,7 +233,7 @@ export default function About() {
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
-                className="rounded-xl bg-white/60 dark:bg-surface/60 border border-slate-200 dark:border-white/5 p-5 relative overflow-hidden"
+                className="rounded-xl bg-white dark:bg-surface border border-slate-200 dark:border-white/10 p-5 relative overflow-hidden"
                 whileHover="hover"
                 animate="rest"
                 variants={cardHover}
@@ -266,7 +259,7 @@ export default function About() {
                     <motion.li key={i} className="relative" custom={i} variants={timelineItem} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
                       <span className="absolute top-1/2 -translate-y-1/2 left-[-1.8125rem] h-2.5 w-2.5 rounded-full bg-accent ring-4 ring-white dark:ring-background shadow-glow" aria-hidden />
                       <motion.div
-                        className="rounded-lg bg-black/5 dark:bg-white/5 border border-slate-200 dark:border-white/5 p-4"
+                        className="rounded-lg bg-white dark:bg-surface border border-slate-200 dark:border-white/10 p-4"
                         whileHover={{ scale: 1.01 }}
                         transition={{ duration: 0.2 }}
                       >

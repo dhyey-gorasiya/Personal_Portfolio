@@ -18,7 +18,7 @@ const NAV_ITEMS = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('home');
-  const { theme, toggleTheme } = useTheme('dark');
+  const { theme, toggleTheme } = useTheme();
   const linkRefs = useRef({});
   const linksContainerRef = useRef(null);
   const [underline, setUnderline] = useState({ left: 0, width: 0 });
@@ -141,7 +141,7 @@ export default function Navbar() {
     <motion.nav
       role="navigation"
       aria-label="Primary"
-      className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-surface/70 border-b border-slate-300 dark:border-white/5"
+      className="sticky top-0 z-50 bg-blue-200/70 dark:bg-surface/70 backdrop-blur-md border-b border-slate-200/80 dark:border-white/10 shadow-sm"
       variants={fadeIn}
       initial="hidden"
       animate="visible"

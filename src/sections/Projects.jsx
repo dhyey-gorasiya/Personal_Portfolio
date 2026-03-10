@@ -78,7 +78,7 @@ export default function Projects() {
   const translatePercent = (index / data.length) * 100;
 
   const navButtonClass =
-    'p-2.5 rounded-full border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-surface/80 text-slate-700 dark:text-muted disabled:opacity-40 disabled:cursor-not-allowed hover:bg-accent hover:text-white hover:border-accent transition-colors shadow-md';
+    'p-2.5 rounded-full border border-slate-200 dark:border-white/10 bg-white dark:bg-surface text-slate-700 dark:text-muted disabled:opacity-40 disabled:cursor-not-allowed hover:bg-accent hover:text-white hover:border-accent transition-colors shadow-md';
 
   return (
     <section id="projects" aria-label="Projects" className="relative py-14 sm:py-15 md:py-18">
@@ -126,14 +126,14 @@ export default function Projects() {
                   <motion.article
                     whileHover={{ y: -4, scale: 1.02 }}
                     transition={{ duration: 0.2 }}
-                    className="group h-full rounded-xl bg-white/60 dark:bg-surface/60 border border-slate-200 dark:border-white/5 overflow-hidden cursor-pointer"
+                    className="group h-full rounded-xl bg-white dark:bg-surface border border-slate-200 dark:border-white/10 overflow-hidden cursor-pointer"
                     onClick={() => onCardClick(p)}
                   >
                     <div className="relative">
                       <img src={p.image} alt={p.title} loading="lazy" className="h-44 w-full object-cover" />
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-t from-white/90 dark:from-background/70 to-transparent" aria-hidden />
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center" aria-hidden>
-                        <span className="text-white font-medium text-sm bg-accent/80 backdrop-blur-sm px-4 py-2 rounded-md">
+                        <span className="text-white font-medium text-sm bg-accent px-4 py-2 rounded-md">
                           View Details
                         </span>
                       </div>
@@ -143,7 +143,7 @@ export default function Projects() {
                       <p className="mt-1 text-sm text-slate-700 dark:text-muted line-clamp-2">{p.summary}</p>
                       <div className="mt-3 flex flex-wrap gap-2">
                         {p.tags.map((t) => (
-                          <span key={t} className="text-xs rounded bg-black/5 dark:bg-white/5 px-2 py-1 text-slate-600 dark:text-muted">{t}</span>
+                          <span key={t} className="text-xs rounded bg-slate-100 dark:bg-white/10 px-2 py-1 text-slate-600 dark:text-muted">{t}</span>
                         ))}
                       </div>
                       <div className="mt-4 flex items-center gap-3">

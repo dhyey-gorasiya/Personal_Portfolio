@@ -4,7 +4,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative  overflow-hidden">
+    <footer className="relative overflow-hidden bg-blue-100/70 dark:bg-surface/70 backdrop-blur-md border-t border-slate-200/80 dark:border-white/10">
       {/* Animated gradient line */}
       <motion.div
         className="h-0.5 w-full"
@@ -23,17 +23,7 @@ export default function Footer() {
         aria-hidden
       />
 
-      {/* Subtle background glow */}
-      <div
-        className="absolute inset-x-0 top-0 h-px"
-        style={{
-          background: 'linear-gradient(to right, transparent, rgba(124, 92, 255, 0.2), rgba(59, 130, 246, 0.2), transparent)',
-          filter: 'blur(1px)',
-        }}
-        aria-hidden
-      />
-
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-slate-600 dark:text-muted">
           {/* Copyright */}
           <motion.p
