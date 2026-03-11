@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { fadeUp, staggerContainer } from '../utils/motion';
 
@@ -21,11 +21,6 @@ export default function Hero() {
     }, 60);
     return () => clearInterval(interval);
   }, [index]);
-
-  const avatarAnimationUrl = useMemo(
-    () => `https://assets9.lottiefiles.com/packages/lf20_tno6cg2w.json`,
-    []
-  );
 
   // Floating animation for avatar
   const floatingAnimation = {
@@ -225,71 +220,54 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Animated avatar section */}
+          {/* Pop-out avatar: head above circle, bottom cut cleanly by circle curve */}
           <motion.div
             variants={fadeUp}
-            className="justify-self-center md:col-span-2"
+            className="hidden md:block justify-self-center md:col-span-2 mt-7"
             animate={floatingAnimation}
           >
-            <div className="relative">
-              {/* Pulsing ring around avatar */}
-              <motion.div
-                className="absolute inset-0 rounded-full border-2 border-accent/20 dark:border-accent/30"
-                animate={{
-                  scale: [1, 1.15, 1],
-                  opacity: [0.3, 0, 0.3],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                aria-hidden
-              />
+            <svg width={0} height={0} aria-hidden>
+              <defs>
+                {/* Clip: top open; bottom cut exactly by circle arc so image fits in circle */}
+                <clipPath id="hero-avatar-clip" clipPathUnits="objectBoundingBox">
+                  <path d="M 0 0 H 1 V 0.609 A 0.391 0.391 0 0 1 0 0.609 Z" />
+                </clipPath>
+              </defs>
+            </svg>
+            <div className="relative h-96 w-96 overflow-visible">
+              {/* Top half of circle - BEHIND avatar (head in front of this arc) */}
+              <div className="absolute inset-0 h-1/2 overflow-hidden z-0 pointer-events-none" aria-hidden>
+                <div className="w-full aspect-square rounded-full border-[3px] border-amber-400 dark:border-amber-400" />
+              </div>
 
-              {/* Animated professional character (Lottie) */}
+              {/* Avatar: natural scale (no zoom), head pops out, bottom cut by circle */}
               <motion.div
-                className="relative z-10 h-56 w-56 sm:h-72 sm:w-72 md:h-80 md:w-80 rounded-full ring-2 ring-slate-200 dark:ring-white/10 shadow-glow overflow-hidden bg-white dark:bg-surface"
-                whileHover={{
-                  scale: 1.05,
-                  rotate: [0, -5, 5, -5, 0],
-                  transition: {
-                    duration: 0.5,
-                    ease: "easeInOut"
-                  }
+                className="absolute left-0 right-0 z-10 overflow-hidden rounded-full"
+                style={{
+                  top: '-28%',
+                  height: '128%',
+                  clipPath: 'url(#hero-avatar-clip)',
                 }}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{
-                  scale: 1,
-                  opacity: 1,
-                  rotate: [0, 2, -2, 0]
-                }}
-                transition={{
-                  scale: {
-                    duration: 0.8,
-                    ease: [0.22, 0.95, 0.36, 1]
-                  },
-                  opacity: {
-                    duration: 0.8,
-                    ease: [0.22, 0.95, 0.36, 1]
-                  },
-                  rotate: {
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }
-                }}
-                aria-label="Professional animated avatar"
+                // whileHover={{
+                //   y: -20,
+                //   transition: { duration: 0.25, ease: 'easeOut' },
+                // }}
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: [0.22, 0.95, 0.36, 1] }}
               >
-                <lottie-player
-                  src={avatarAnimationUrl}
-                  background=""
-                  speed="1"
-                  loop
-                  autoplay
-                  style={{ width: '100%', height: '100%' }}
-                ></lottie-player>
+                <img
+                  src="https://i.postimg.cc/k418S6N5/Chat-GPT-Image-Mar-11-2026-11-03-19-AM.png"
+                  alt="Professional avatar"
+                  className="absolute left-1/2 w-full h-[128%] -translate-x-1/2 object-cover object-[50%_35%] select-none"
+                  style={{ top: '-18%' }}
+                />
               </motion.div>
+
+              {/* Bottom half of circle - IN FRONT (torso behind arc) */}
+              <div className="absolute inset-0 h-1/2 top-1/2 overflow-hidden z-20 pointer-events-none" aria-hidden>
+                <div className="absolute left-0 w-full aspect-square rounded-full border-[3px] border-amber-400 dark:border-amber-400" style={{ top: '-100%' }} />
+              </div>
             </div>
           </motion.div>
         </motion.div>

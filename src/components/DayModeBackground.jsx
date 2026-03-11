@@ -1,14 +1,20 @@
 import { motion } from "framer-motion";
+import JetAirplaneSvg from "./JetAirplaneSvg";
 
 // Stable cloud configs. Scale applied so clouds render bigger; duration varies a lot per cloud.
-const CLOUD_SCALE = 1.6;
+const CLOUD_SCALE = 2.6;
 const CLOUD_CONFIGS = [
-    { top: 12, puffs: [[0, 0, 45], [55, -18, 38], [110, 5, 42], [35, 22, 32], [85, 15, 28]], opacity: 0.94, duration: 128 },
-    { top: 28, puffs: [[0, 10, 50], [60, -10, 40], [120, 8, 45], [30, 25, 35], [90, 20, 30], [150, 5, 38]], opacity: 0.9, duration: 58 },
-    { top: 45, puffs: [[0, 5, 40], [45, -12, 35], [90, 0, 38], [25, 20, 28]], opacity: 0.92, duration: 95 },
-    { top: 62, puffs: [[0, 0, 48], [50, -15, 40], [100, 5, 42], [70, 18, 32], [130, 12, 36]], opacity: 0.88, duration: 72 },
-    { top: 18, puffs: [[0, 8, 36], [40, -8, 30], [75, 5, 32], [20, 18, 24]], opacity: 0.91, duration: 145 },
-    { top: 52, puffs: [[0, 5, 44], [52, -12, 38], [105, 3, 40], [35, 20, 30], [80, 15, 28]], opacity: 0.89, duration: 82 },
+    { top: 12, puffs: [[0, 0, 45], [55, -18, 38], [110, 5, 42], [35, 22, 32], [85, 15, 28]], opacity: 0.94, duration: 42 },
+    { top: 28, puffs: [[0, 10, 50], [60, -10, 40], [120, 8, 45], [30, 25, 35], [90, 20, 30], [150, 5, 38]], opacity: 0.9, duration: 22 },
+    { top: 45, puffs: [[0, 5, 40], [45, -12, 35], [90, 0, 38], [25, 20, 28]], opacity: 0.92, duration: 35 },
+    { top: 62, puffs: [[0, 0, 48], [50, -15, 40], [100, 5, 42], [70, 18, 32], [130, 12, 36]], opacity: 0.88, duration: 28 },
+    { top: 18, puffs: [[0, 8, 36], [40, -8, 30], [75, 5, 32], [20, 18, 24]], opacity: 0.91, duration: 52 },
+    { top: 52, puffs: [[0, 5, 44], [52, -12, 38], [105, 3, 40], [35, 20, 30], [80, 15, 28]], opacity: 0.89, duration: 30 },
+    // Low fluffy clouds
+    { top: 72, puffs: [[0, 5, 42], [48, -14, 36], [95, 2, 40], [30, 22, 30], [70, 16, 28], [120, 8, 34]], opacity: 0.9, duration: 38 },
+    { top: 78, puffs: [[0, 8, 38], [42, -10, 32], [85, 4, 36], [25, 20, 26], [65, 14, 24]], opacity: 0.88, duration: 32 },
+    { top: 84, puffs: [[0, 3, 44], [52, -12, 38], [100, 6, 42], [35, 24, 32], [80, 18, 30]], opacity: 0.87, duration: 36 },
+    { top: 88, puffs: [[0, 6, 40], [45, -8, 34], [88, 0, 38], [28, 18, 28], [72, 12, 26]], opacity: 0.86, duration: 34 },
 ];
 
 // Birds flying left to right – stable configs (top %, duration, size, delay)
@@ -25,6 +31,100 @@ const BIRD_CONFIGS = [
 const BIRD_FILL = "rgba(35,33,30,0.9)";
 const WING_UP = -28;
 const WING_DOWN = 24;
+
+// Indian flag colors for jet smoke trails (saffron, white, green)
+const SAFFRON = "#FF9933";
+const FLAG_WHITE = "#FFFFFF";
+const FLAG_GREEN = "#138808";
+
+// Jet flies left to right – small size so it looks far away
+const JET_DURATION = 38;
+const JET_DELAY = 0;
+const JET_TOP = "44%";
+const JET_WIDTH = 90;
+const JET_HEIGHT = 68;
+
+function FlyingJet() {
+    return (
+        <motion.div
+            className="absolute"
+            style={{
+                top: JET_TOP,
+                left: "-140px",
+                width: JET_WIDTH,
+                height: JET_HEIGHT,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-end",
+                transform: "rotate(-3deg)",
+                overflow: "visible",
+                filter: "blur(1.5px)",
+            }}
+            initial={{ x: 0 }}
+            animate={{ x: "140vw" }}
+            transition={{
+                duration: JET_DURATION,
+                repeat: Infinity,
+                delay: JET_DELAY,
+                ease: "linear",
+            }}
+        >
+            {/* Smoke – front edge at plane’s back/tail so it reads as coming from the rear */}
+            <div
+                className="absolute"
+                style={{
+                    right: "38%",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    width: "320px",
+                    height: "16px",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "stretch",
+                    gap: "0px",
+                    marginRight: "-10px",
+                    pointerEvents: "none",
+                }}
+            >
+                <div
+                    style={{
+                        height: "4px",
+                        background: `linear-gradient(to left, transparent 0%, rgba(255,153,51,0.08) 3%, rgba(255,153,51,0.4) 12%, rgba(255,153,51,0.85) 28%, ${SAFFRON} 40%, rgba(255,153,51,0.5) 58%, transparent 100%)`,
+                        filter: "blur(3px)",
+                        borderRadius: "1px",
+                    }}
+                />
+                <div
+                    style={{
+                        height: "4px",
+                        background: `linear-gradient(to left, transparent 0%, rgba(255,255,255,0.1) 3%, rgba(255,255,255,0.45) 12%, rgba(255,255,255,0.9) 28%, ${FLAG_WHITE} 40%, rgba(255,255,255,0.45) 58%, transparent 100%)`,
+                        filter: "blur(2px)",
+                        borderRadius: "1px",
+                        boxShadow: "0 0 5px rgba(255,255,255,0.2)",
+                    }}
+                />
+                <div
+                    style={{
+                        height: "4px",
+                        background: `linear-gradient(to left, transparent 0%, rgba(19,136,8,0.08) 3%, rgba(19,136,8,0.4) 12%, rgba(19,136,8,0.85) 28%, ${FLAG_GREEN} 40%, rgba(19,136,8,0.5) 58%, transparent 100%)`,
+                        filter: "blur(3px)",
+                        borderRadius: "1px",
+                    }}
+                />
+            </div>
+
+            {/* Jet – your airplane SVG with red-to-blue gradient */}
+            <JetAirplaneSvg
+                width="50%"
+                height="50%"
+                style={{
+                    flexShrink: 0,
+                    filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.25))",
+                }}
+            />
+        </motion.div>
+    );
+}
 
 function FlyingBird({ config, index }) {
 
@@ -115,6 +215,7 @@ function FlyingBird({ config, index }) {
         </motion.div>
     );
 }
+
 function Cloud({ config, index }) {
     const s = CLOUD_SCALE;
     const rightmost = Math.max(...config.puffs.map(([x, , r]) => (x + r) * s)) + 80;
@@ -148,7 +249,7 @@ function Cloud({ config, index }) {
 
 function DayModeBackground() {
     return (
-        <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="fixed inset-0 -z-10 overflow-visible pointer-events-none">
 
             {/* Sky Gradient */}
             <div
@@ -186,6 +287,9 @@ function DayModeBackground() {
             {CLOUD_CONFIGS.map((config, i) => (
                 <Cloud config={config} index={i} />
             ))}
+
+            {/* Jet with Indian flag smoke (saffron, white, green) */}
+            <FlyingJet />
 
             {/* Birds flying left to right */}
             {BIRD_CONFIGS.map((config, i) => (
