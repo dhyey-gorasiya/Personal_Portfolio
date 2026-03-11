@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Personal_Portfolio/static/css/main.74b9c779.css",
-    "main.js": "/Personal_Portfolio/static/js/main.1e3b4894.js",
+    "main.css": "/Personal_Portfolio/static/css/main.c3b3bb22.css",
+    "main.js": "/Personal_Portfolio/static/js/main.3dfa4875.js",
     "static/js/453.2fa7cac9.chunk.js": "/Personal_Portfolio/static/js/453.2fa7cac9.chunk.js",
     "static/media/Dhyey Gorasiya (Resume).pdf": "/Personal_Portfolio/static/media/Dhyey Gorasiya (Resume).587bbcbef5a11137d901.pdf",
     "index.html": "/Personal_Portfolio/index.html",
-    "main.74b9c779.css.map": "/Personal_Portfolio/static/css/main.74b9c779.css.map",
-    "main.1e3b4894.js.map": "/Personal_Portfolio/static/js/main.1e3b4894.js.map",
+    "main.c3b3bb22.css.map": "/Personal_Portfolio/static/css/main.c3b3bb22.css.map",
+    "main.3dfa4875.js.map": "/Personal_Portfolio/static/js/main.3dfa4875.js.map",
     "453.2fa7cac9.chunk.js.map": "/Personal_Portfolio/static/js/453.2fa7cac9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.74b9c779.css",
-    "static/js/main.1e3b4894.js"
+    "static/css/main.c3b3bb22.css",
+    "static/js/main.3dfa4875.js"
   ]
 }
