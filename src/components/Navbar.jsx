@@ -118,9 +118,8 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', onResize);
   }, [active]);
 
-  // Smooth scroll handler with offset for navbar
-  const handleSmoothScroll = (e, itemId) => {
-    e.preventDefault();
+  // Scroll to section by id (used after menu close on mobile so layout is stable)
+  const scrollToSection = (itemId) => {
     setActive(itemId);
     const element = document.getElementById(itemId);
     if (element) {
@@ -133,8 +132,13 @@ export default function Navbar() {
         behavior: 'smooth'
       });
     }
-    // Update URL hash without triggering scroll
     window.history.pushState(null, '', `#${itemId}`);
+  };
+
+  // Smooth scroll handler with offset for navbar (desktop / direct use)
+  const handleSmoothScroll = (e, itemId) => {
+    e.preventDefault();
+    scrollToSection(itemId);
   };
 
   return (
@@ -220,8 +224,11 @@ export default function Navbar() {
               key={item.id}
               href={`#${item.id}`}
               onClick={(e) => {
-                handleSmoothScroll(e, item.id);
+                e.preventDefault();
                 setOpen(false);
+                // Scroll after menu collapse so layout is stable and target position is correct
+                const MENU_COLLAPSE_MS = 350;
+                setTimeout(() => scrollToSection(item.id), MENU_COLLAPSE_MS);
               }}
               className={`block px-2 py-2 rounded-md transition-colors hover:bg-black/5 dark:hover:bg-white/5 ${active === item.id
                 ? 'text-slate-900 dark:text-text bg-black/5 dark:bg-white/5'

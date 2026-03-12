@@ -27,11 +27,6 @@ const BIRD_CONFIGS = [
     { top: 52, duration: 15, size: 19, delay: 5 },
 ];
 
-// Bird: filled body + two wings that rotate (flap) around the body.
-const BIRD_FILL = "rgba(35,33,30,0.9)";
-const WING_UP = -28;
-const WING_DOWN = 24;
-
 // Indian flag colors for jet smoke trails (saffron, white, green)
 const SAFFRON = "#FF9933";
 const FLAG_WHITE = "#FFFFFF";
@@ -41,22 +36,64 @@ const FLAG_GREEN = "#138808";
 const JET_DURATION = 38;
 const JET_DELAY = 0;
 const JET_TOP = "44%";
-const JET_WIDTH = 90;
-const JET_HEIGHT = 68;
+const FORMATION_WIDTH = 120;
+const FORMATION_HEIGHT = 115;
+
+function SingleJetWithSmoke({ smokeColor, smokeRgb, position }) {
+    const gradient = `linear-gradient(to left, transparent 0%, ${smokeRgb} 3%, ${smokeRgb} 12%, ${smokeColor} 28%, ${smokeColor} 40%, ${smokeRgb} 58%, transparent 100%)`;
+    return (
+        <div
+            className="absolute"
+            style={{
+                ...position,
+                width: 70,
+                height: 52,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-end",
+                transform: "rotate(-3deg)",
+                overflow: "visible",
+            }}
+        >
+            <div
+                className="absolute"
+                style={{
+                    right: "30%",
+                    top: "45%",
+                    transform: "translateY(-50%)",
+                    width: 200,
+                    height: 6,
+                    marginRight: "8px",
+                    pointerEvents: "none",
+                    background: gradient,
+                    filter: "blur(3px)",
+                    borderRadius: "2px",
+                }}
+            />
+            <JetAirplaneSvg
+                width="50%"
+                height="50%"
+                style={{ flexShrink: 0, filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.2))" }}
+            />
+        </div>
+    );
+}
 
 function FlyingJet() {
+    // Vertical formation: orange (top), white (middle), green (bottom)
+    const jets = [
+        { smokeColor: SAFFRON, smokeRgb: "rgba(255,153,51,0.85)", position: { left: "50%", top: 0, transform: "translateX(-50%)" } },
+        { smokeColor: FLAG_WHITE, smokeRgb: "rgba(255,255,255,0.9)", position: { left: "100%", top: 20, transform: "translateX(-50%)" } },
+        { smokeColor: FLAG_GREEN, smokeRgb: "rgba(19,136,8,0.85)", position: { left: "50%", top: 40, transform: "translateX(-50%)" } },
+    ];
     return (
         <motion.div
             className="absolute"
             style={{
                 top: JET_TOP,
                 left: "-140px",
-                width: JET_WIDTH,
-                height: JET_HEIGHT,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-end",
-                transform: "rotate(-3deg)",
+                width: FORMATION_WIDTH,
+                height: FORMATION_HEIGHT,
                 overflow: "visible",
                 filter: "blur(1.5px)",
             }}
@@ -70,58 +107,14 @@ function FlyingJet() {
             }}
         >
             {/* Smoke – front edge at plane’s back/tail so it reads as coming from the rear */}
-            <div
-                className="absolute"
-                style={{
-                    right: "38%",
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    width: "320px",
-                    height: "16px",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "stretch",
-                    gap: "0px",
-                    marginRight: "-10px",
-                    pointerEvents: "none",
-                }}
-            >
-                <div
-                    style={{
-                        height: "4px",
-                        background: `linear-gradient(to left, transparent 0%, rgba(255,153,51,0.08) 3%, rgba(255,153,51,0.4) 12%, rgba(255,153,51,0.85) 28%, ${SAFFRON} 40%, rgba(255,153,51,0.5) 58%, transparent 100%)`,
-                        filter: "blur(3px)",
-                        borderRadius: "1px",
-                    }}
+            {jets.map((jet, i) => (
+                <SingleJetWithSmoke
+                    key={i}
+                    smokeColor={jet.smokeColor}
+                    smokeRgb={jet.smokeRgb}
+                    position={jet.position}
                 />
-                <div
-                    style={{
-                        height: "4px",
-                        background: `linear-gradient(to left, transparent 0%, rgba(255,255,255,0.1) 3%, rgba(255,255,255,0.45) 12%, rgba(255,255,255,0.9) 28%, ${FLAG_WHITE} 40%, rgba(255,255,255,0.45) 58%, transparent 100%)`,
-                        filter: "blur(2px)",
-                        borderRadius: "1px",
-                        boxShadow: "0 0 5px rgba(255,255,255,0.2)",
-                    }}
-                />
-                <div
-                    style={{
-                        height: "4px",
-                        background: `linear-gradient(to left, transparent 0%, rgba(19,136,8,0.08) 3%, rgba(19,136,8,0.4) 12%, rgba(19,136,8,0.85) 28%, ${FLAG_GREEN} 40%, rgba(19,136,8,0.5) 58%, transparent 100%)`,
-                        filter: "blur(3px)",
-                        borderRadius: "1px",
-                    }}
-                />
-            </div>
-
-            {/* Jet – your airplane SVG with red-to-blue gradient */}
-            <JetAirplaneSvg
-                width="50%"
-                height="50%"
-                style={{
-                    flexShrink: 0,
-                    filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.25))",
-                }}
-            />
+            ))}
         </motion.div>
     );
 }
