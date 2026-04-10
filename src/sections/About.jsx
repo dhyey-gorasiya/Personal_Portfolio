@@ -15,6 +15,43 @@ const timeline = [
   { company: 'Proficient Recruitment Services Pvt. Ltd. ', title: 'Intern Angular Developer', time: 'Mar 2024 — Dec 2024', desc: 'Developing web applications using Anguler.', location: 'Ahmedabad' },
 ];
 
+function parseTimelineRange(time) {
+  const [start, end] = time.split('—').map((part) => part.trim());
+  const parseDate = (value) => {
+    if (value === 'Present') return new Date();
+    const [month, year] = value.split(' ');
+    return new Date(`${month} 1, ${year}`);
+  };
+  return [parseDate(start), end === 'Present' ? new Date() : parseDate(end)];
+}
+
+function getExperienceDisplay(data) {
+  const intervals = data.map((entry) => parseTimelineRange(entry.time));
+  intervals.sort((a, b) => a[0] - b[0]);
+
+  const merged = [];
+  for (const [start, end] of intervals) {
+    if (!merged.length || merged[merged.length - 1][1] < start) {
+      merged.push([start, end]);
+    } else {
+      merged[merged.length - 1][1] = new Date(Math.max(merged[merged.length - 1][1], end));
+    }
+  }
+
+  let months = 0;
+  for (const [start, end] of merged) {
+    const yDiff = end.getFullYear() - start.getFullYear();
+    const mDiff = end.getMonth() - start.getMonth();
+    months += yDiff * 12 + mDiff + 1;
+  }
+
+  const years = months / 12;
+  if (years < 1) return `${Math.round(months)} months`;
+  if (years < 1.25) return '1+ year';
+  if (years < 1.75) return '1.5+ years';
+  return `${Math.floor(years)}+ years`;
+}
+
 
 function ProfileImageModal({ isOpen, onClose, images = PROFILE_GALLERY_IMAGES }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -128,6 +165,7 @@ function ProfileImageModal({ isOpen, onClose, images = PROFILE_GALLERY_IMAGES })
 
 export default function About() {
   const [profileModalOpen, setProfileModalOpen] = useState(false);
+  const experienceDisplay = getExperienceDisplay(timeline);
 
   const cardHover = {
     rest: { y: 0, boxShadow: '0 0 0 rgba(0,0,0,0)' },
@@ -215,7 +253,7 @@ export default function About() {
                 variants={cardHover}
               >
                 <h3 className="font-medium text-slate-900 dark:text-text">Experience</h3>
-                <p className="text-slate-600 dark:text-muted mt-1">1+ years</p>
+                <p className="text-slate-600 dark:text-muted mt-1">{experienceDisplay}</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
